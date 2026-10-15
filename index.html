@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Piecework: Flowers</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,6 +48,14 @@ canvas#table.dragging { cursor: grabbing; }
 footer { text-align: center; font-size: .78rem; }
 footer a { color: var(--muted); font-style: italic; text-decoration: none; }
 </style>
+<style>
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html, body { margin: 0; }
+body { font-size: 14px; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
 
 <div class="top">
   <h1>Piecework <span>Flowers Edition</span></h1>
@@ -694,7 +707,7 @@ function render() {
     ctx.fillText(`Done in ${fmt(G.elapsed)}${G.peeks ? ` · ${G.peeks} peek${G.peeks > 1 ? 's' : ''}` : ' · no peeking'}`, tx, ty);
     ctx.fillStyle = 'rgba(235,230,216,.6)'; ctx.font = '400 14px "Atkinson Hyperlegible", sans-serif';
     const showing = G.reveal.toAlt ? !G.day : G.day;
-    if (t >= 1500) ctx.fillText(`${G.kind === 'field' ? (showing ? 'The same field, after topping.' : 'The same field, in bloom.') : (showing ? 'The same bouquet, a week later.' : 'The same bouquet, fresh.')} Tap the picture to switch.`, tx, ty + 24);
+    if (t >= 1500) { ctx.fillText(`${G.kind === 'field' ? (showing ? 'The same field, after topping.' : 'The same field, in bloom.') : (showing ? 'The same bouquet, a week later.' : 'The same bouquet, fresh.')}`, tx, ty + 24); ctx.fillText('Tap the picture to switch.', tx, ty + 44); }
     if (t < 5000 || (G.reveal.t1 && now - G.reveal.t1 < 1500)) animating = true;
   }
   if (animating) draw();
@@ -969,4 +982,5 @@ window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() =
 
 newGame();
 </script>
-
+</body>
+</html>
